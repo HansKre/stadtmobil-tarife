@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Condensed:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
@@ -7,51 +7,49 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --sea-ink: #173a40;
-  --sea-ink-soft: #416166;
-  --lagoon: #4fb8b2;
-  --lagoon-deep: #328f97;
-  --palm: #2f6a4a;
-  --sand: #e7f0e8;
-  --foam: #f3faf5;
-  --surface: rgba(255, 255, 255, 0.74);
-  --surface-strong: rgba(255, 255, 255, 0.9);
-  --line: rgba(23, 58, 64, 0.14);
-  --inset-glint: rgba(255, 255, 255, 0.82);
-  --kicker: rgba(47, 106, 74, 0.9);
-  --bg-base: #e7f3ec;
-  --header-bg: rgba(251, 255, 248, 0.84);
-  --chip-bg: rgba(255, 255, 255, 0.8);
-  --chip-line: rgba(47, 106, 74, 0.18);
-  --link-bg-hover: rgba(255, 255, 255, 0.9);
-  --hero-a: rgba(79, 184, 178, 0.36);
-  --hero-b: rgba(47, 106, 74, 0.2);
+  --stadtmobil-black: #0a0a0a;
+  --stadtmobil-text: #4c4843;
+  --stadtmobil-muted: #656568;
+  --stadtmobil-orange: #ff8a36;
+  --stadtmobil-orange-dark: #f76700;
+  --stadtmobil-blue: #0081c6;
+  --stadtmobil-blue-dark: #006ea8;
+  --stadtmobil-cream: #fefefe;
+  --stadtmobil-warm: #f6f3ef;
+  --stadtmobil-line: #dfdfdf;
+  --stadtmobil-soft-line: #e6e6e6;
+  --stadtmobil-row: #eff0f1;
+  --surface: #ffffff;
+  --surface-strong: #fefefe;
+  --line: var(--stadtmobil-line);
+  --inset-glint: rgba(255, 255, 255, 0.9);
+  --kicker: var(--stadtmobil-orange-dark);
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.871 0.006 286.286);
+  --background: var(--stadtmobil-cream);
+  --foreground: var(--stadtmobil-black);
+  --card: #ffffff;
+  --card-foreground: var(--stadtmobil-black);
+  --popover: #ffffff;
+  --popover-foreground: var(--stadtmobil-black);
+  --primary: var(--stadtmobil-orange);
+  --primary-foreground: #fefefe;
+  --secondary: var(--stadtmobil-row);
+  --secondary-foreground: var(--stadtmobil-black);
+  --muted: var(--stadtmobil-row);
+  --muted-foreground: var(--stadtmobil-muted);
+  --accent: #ffe4d2;
+  --accent-foreground: #9b4100;
+  --destructive: #ec5840;
+  --destructive-foreground: #fefefe;
+  --border: var(--stadtmobil-line);
+  --input: #cacaca;
+  --ring: var(--stadtmobil-blue);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
+  --radius: 0.5rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
   --sidebar-primary: oklch(0.21 0.006 285.885);
@@ -83,25 +81,25 @@
   --hero-a: rgba(96, 215, 207, 0.18);
   --hero-b: rgba(110, 200, 154, 0.12);
 
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.141 0.005 285.823);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.141 0.005 285.823);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.274 0.006 286.033);
-  --input: oklch(0.274 0.006 286.033);
-  --ring: oklch(0.442 0.017 285.786);
+  --background: #0a0a0a;
+  --foreground: #fefefe;
+  --card: #171717;
+  --card-foreground: #fefefe;
+  --popover: #171717;
+  --popover-foreground: #fefefe;
+  --primary: #ff8a36;
+  --primary-foreground: #fefefe;
+  --secondary: #333333;
+  --secondary-foreground: #fefefe;
+  --muted: #333333;
+  --muted-foreground: #cacaca;
+  --accent: #4a2a15;
+  --accent-foreground: #ffe4d2;
+  --destructive: #ec5840;
+  --destructive-foreground: #fefefe;
+  --border: #4c4843;
+  --input: #656568;
+  --ring: #ff8a36;
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -118,7 +116,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Noto Sans', Helvetica, Arial, sans-serif;
+  --font-condensed: 'Noto Sans Condensed', 'Arial Narrow', sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -165,14 +164,11 @@ body,
 
 body {
   margin: 0;
-  color: var(--sea-ink);
+  color: var(--foreground);
   font-family: var(--font-sans);
-  background-color: var(--bg-base);
-  background:
-    radial-gradient(1100px 620px at -8% -10%, var(--hero-a), transparent 58%),
-    radial-gradient(1050px 620px at 112% -12%, var(--hero-b), transparent 62%),
-    radial-gradient(720px 380px at 50% 115%, rgba(79, 184, 178, 0.1), transparent 68%),
-    linear-gradient(180deg, color-mix(in oklab, var(--sand) 68%, white) 0%, var(--foam) 44%, var(--bg-base) 100%);
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--stadtmobil-cream);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -184,7 +180,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  opacity: 0.28;
+  opacity: 0;
   background:
     radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.8), transparent 34%),
     radial-gradient(circle at 78% 26%, rgba(79, 184, 178, 0.2), transparent 42%),
@@ -197,7 +193,7 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  opacity: 0.14;
+  opacity: 0;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
@@ -206,14 +202,23 @@ body::after {
 }
 
 a {
-  color: var(--lagoon-deep);
-  text-decoration-color: rgba(50, 143, 151, 0.4);
+  color: var(--stadtmobil-blue);
+  text-decoration-color: color-mix(in oklab, var(--stadtmobil-blue) 45%, transparent);
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
 
 a:hover {
-  color: #246f76;
+  color: var(--stadtmobil-blue-dark);
+}
+
+h1,
+h2,
+h3,
+.display-title {
+  font-family: var(--font-condensed);
+  font-weight: 500;
+  color: var(--stadtmobil-black);
 }
 
 code {
@@ -241,22 +246,20 @@ pre code {
 }
 
 .page-wrap {
-  width: min(1080px, calc(100% - 2rem));
+  width: min(75rem, calc(100% - 2rem));
   margin-inline: auto;
 }
 
 .display-title {
-  font-family: 'Fraunces', Georgia, serif;
+  letter-spacing: -0.01em;
 }
 
 .island-shell {
   border: 1px solid var(--line);
-  background: linear-gradient(165deg, var(--surface-strong), var(--surface));
+  background: var(--surface);
   box-shadow:
     0 1px 0 var(--inset-glint) inset,
-    0 22px 44px rgba(30, 90, 72, 0.1),
-    0 6px 18px rgba(23, 58, 64, 0.08);
-  backdrop-filter: blur(4px);
+    0 0.75rem 2rem rgba(10, 10, 10, 0.08);
 }
 
 .feature-card {
@@ -280,10 +283,10 @@ a {
 }
 
 .island-kicker {
-  letter-spacing: 0.16em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 0.69rem;
+  font-size: 0.75rem;
   color: var(--kicker);
 }
 
@@ -333,7 +336,62 @@ a {
 
 .site-footer {
   border-top: 1px solid var(--line);
-  background: color-mix(in oklab, var(--header-bg) 84%, transparent 16%);
+  background: var(--stadtmobil-row);
+}
+
+.stadtmobil-topline {
+  height: 0.5rem;
+  background: linear-gradient(90deg, var(--stadtmobil-orange), var(--stadtmobil-orange-dark));
+}
+
+.stadtmobil-hero {
+  border-bottom: 1px solid var(--stadtmobil-line);
+  background:
+    linear-gradient(90deg, rgba(255, 138, 54, 0.12), transparent 42%),
+    linear-gradient(180deg, #fff 0%, var(--stadtmobil-warm) 100%);
+}
+
+.stadtmobil-logo-mark {
+  display: inline-grid;
+  min-height: 3.25rem;
+  place-items: center;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: var(--stadtmobil-orange);
+  color: #fff;
+  font-family: var(--font-condensed);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.75rem 1rem 0.65rem;
+}
+
+.section-card {
+  border: 1px solid var(--stadtmobil-line);
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0 0.75rem 1.75rem rgba(10, 10, 10, 0.06);
+}
+
+.field-group {
+  border-color: var(--stadtmobil-soft-line);
+  background: #fefefe;
+}
+
+.picker-input {
+  position: relative;
+  padding-right: 2.5rem;
+}
+
+.picker-input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 0.75rem;
+  margin: 0;
+}
+
+.brand-table {
+  border: 1px solid var(--stadtmobil-line);
+  border-radius: 0.5rem;
+  background: #fff;
 }
 
 @layer base {
