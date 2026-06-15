@@ -2,6 +2,10 @@
 
 React-SPA zur Berechnung und zum tabellarischen Vergleich der Nutzungskosten für stadtmobil Stuttgart Privatkundentarife.
 
+## UI
+
+<https://stadtmobil-tarife.netlify.app/>
+
 ## Funktionen
 
 - Berechnet Classic, Basic und Easy gleichzeitig.
@@ -16,7 +20,7 @@ React-SPA zur Berechnung und zum tabellarischen Vergleich der Nutzungskosten fü
 
 Die Tarifdaten sind in `src/lib/tariffs/data.ts` gepflegt. Quelle ist die offizielle stadtmobil-Stuttgart-Privatkundenseite:
 
-https://stuttgart.stadtmobil.de/privatkunden/preise-tarife/
+<https://stuttgart.stadtmobil.de/privatkunden/preise-tarife/>
 
 Verwendeter Stand laut Seite: gültig seit 18.05.2026.
 
