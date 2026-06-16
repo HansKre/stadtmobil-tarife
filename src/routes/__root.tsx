@@ -14,7 +14,13 @@ export const Route = createRootRoute({
 					"Vergleicht die Nutzungskosten der stadtmobil Stuttgart Privatkundentarife Classic, Basic und Easy.",
 			},
 		],
-		links: [{ rel: "stylesheet", href: appCss }],
+		links: [
+			{ rel: "icon", href: "/icon.svg", type: "image/svg+xml" },
+			{ rel: "alternate icon", href: "/favicon.ico" },
+			{ rel: "apple-touch-icon", href: "/logo192.png" },
+			{ rel: "manifest", href: "/manifest.json" },
+			{ rel: "stylesheet", href: appCss },
+		],
 	}),
 	shellComponent: RootDocument,
 });

@@ -42,13 +42,11 @@ import {
 	durationHours,
 	formatDateTime,
 	formatHours,
-	formatWeekday,
 	toDateInputValue,
 	toTimeInputValue,
 } from "#/lib/tariffs/dates";
 import { EXAMPLE_SCENARIOS } from "#/lib/tariffs/examples";
 import type {
-	CostDisplayMode,
 	CustomerType,
 	TripInput,
 	UsageContext,
@@ -75,17 +73,6 @@ const customerTypeOptions: Array<{ value: CustomerType; label: string }> = [
 	{ value: "household", label: "Haushalt" },
 ];
 
-const costDisplayModeOptions: Array<{
-	value: CostDisplayMode;
-	label: string;
-}> = [
-	{ value: "variableOnly", label: "Nur variable Fahrtkosten" },
-	{
-		value: "withBaseCosts",
-		label: "Variable Fahrtkosten + Grundkosten separat",
-	},
-];
-
 const TRIP_INPUT_STORAGE_KEY = "stadtmobil-tarife:trip-input:v1";
 
 type StoredTripInput = Partial<{
@@ -95,7 +82,6 @@ type StoredTripInput = Partial<{
 	distanceKm: number;
 	usageContext: UsageContext;
 	customerType: CustomerType;
-	costDisplayMode: CostDisplayMode;
 }>;
 
 function createInitialInput(): TripInput {
@@ -114,7 +100,6 @@ function createInitialInput(): TripInput {
 		distanceKm: 40,
 		usageContext: "stuttgart",
 		customerType: "individual",
-		costDisplayMode: "variableOnly",
 	};
 }
 
@@ -126,7 +111,6 @@ function createStoredInput(input: TripInput): StoredTripInput {
 		distanceKm: input.distanceKm,
 		usageContext: input.usageContext,
 		customerType: input.customerType,
-		costDisplayMode: input.costDisplayMode,
 	};
 }
 
@@ -145,7 +129,10 @@ function createInputFromSessionStorage(): TripInput {
 	return mergeStoredInput(initialInput, storedValue);
 }
 
-function mergeStoredInput(initialInput: TripInput, storedValue: string): TripInput {
+function mergeStoredInput(
+	initialInput: TripInput,
+	storedValue: string,
+): TripInput {
 	const parsed = parseStoredInput(storedValue);
 	if (!isRecord(parsed)) {
 		return initialInput;
@@ -166,12 +153,6 @@ function mergeStoredInput(initialInput: TripInput, storedValue: string): TripInp
 		customerType: isOptionValue(parsed.customerType, customerTypeOptions)
 			? parsed.customerType
 			: initialInput.customerType,
-		costDisplayMode: isOptionValue(
-			parsed.costDisplayMode,
-			costDisplayModeOptions,
-		)
-			? parsed.costDisplayMode
-			: initialInput.costDisplayMode,
 	};
 }
 
@@ -220,9 +201,6 @@ function Home() {
 		string | undefined
 	>();
 	const calculation = useMemo(() => calculateTariffs(input), [input]);
-	const selectedVehicle = VEHICLE_CLASSES.find(
-		(vehicleClass) => vehicleClass.code === input.vehicleClass,
-	);
 	const currentDuration = Math.max(0, durationHours(input.start, input.end));
 
 	useEffect(() => {
@@ -260,7 +238,7 @@ function Home() {
 					<div className="flex items-start justify-between gap-4">
 						<div className="stadtmobil-logo-mark">tarifrechner</div>
 						<a
-							className="hidden items-center gap-2 rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground text-sm no-underline transition-colors hover:bg-[#f76700] hover:text-primary-foreground sm:inline-flex"
+							className="stadtmobil-hero-link hidden items-center gap-2 rounded-lg bg-primary px-4 py-2 font-medium text-sm no-underline transition-colors hover:bg-[#f76700] sm:inline-flex"
 							href={TARIFF_SOURCE.url}
 						>
 							zu stadtmobil
@@ -328,9 +306,6 @@ function Home() {
 											))}
 										</SelectContent>
 									</Select>
-									<span className="text-muted-foreground text-xs">
-										{selectedVehicle?.description}
-									</span>
 								</div>
 
 								<div className="field-group grid min-w-0 gap-3 rounded-lg border p-3">
@@ -370,9 +345,6 @@ function Home() {
 											/>
 										</div>
 									</div>
-									<p className="text-muted-foreground text-xs">
-										Wochentag: {formatWeekday(input.start)}
-									</p>
 								</div>
 
 								<div className="field-group grid min-w-0 gap-3 rounded-lg border p-3">
@@ -412,36 +384,29 @@ function Home() {
 											/>
 										</div>
 									</div>
-									<p className="text-muted-foreground text-xs">
-										Wochentag: {formatWeekday(input.end)}
-									</p>
 								</div>
 
-								<div className="grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))] gap-3">
-									<div className="grid min-w-0 gap-1.5">
-										<Label htmlFor="duration-hours">Dauer in Stunden</Label>
-										<Input
-											id="duration-hours"
-											readOnly
-											type="text"
-											value={formatHours(currentDuration)}
-										/>
-									</div>
-									<div className="grid min-w-0 gap-1.5">
-										<Label htmlFor="duration-days">Dauer in Tagen</Label>
-										<Input
-											id="duration-days"
-											readOnly
-											type="text"
-											value={
-												Number.isFinite(currentDuration)
-													? (currentDuration / 24).toLocaleString("de-DE", {
-															maximumFractionDigits: 2,
-														})
-													: "0"
-											}
-										/>
-									</div>
+								<div className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+									<p>
+										<span className="text-muted-foreground">
+											Dauer in Stunden:
+										</span>{" "}
+										<span className="font-medium">
+											{formatHours(currentDuration)}
+										</span>
+									</p>
+									<p>
+										<span className="text-muted-foreground">
+											Dauer in Tagen:
+										</span>{" "}
+										<span className="font-medium">
+											{Number.isFinite(currentDuration)
+												? (currentDuration / 24).toLocaleString("de-DE", {
+														maximumFractionDigits: 2,
+													})
+												: "0"}
+										</span>
+									</p>
 								</div>
 
 								<div className="grid gap-1.5">
@@ -482,18 +447,6 @@ function Home() {
 										setInput((current) => ({
 											...current,
 											customerType: value as CustomerType,
-										}))
-									}
-								/>
-								<FormSelect
-									id="cost-display-mode"
-									label="Darstellung"
-									options={costDisplayModeOptions}
-									value={input.costDisplayMode}
-									onValueChange={(value) =>
-										setInput((current) => ({
-											...current,
-											costDisplayMode: value as CostDisplayMode,
 										}))
 									}
 								/>
@@ -555,10 +508,7 @@ function Home() {
 								</div>
 
 								{calculation.results.length > 0 && (
-									<Results
-										results={calculation.results}
-										showBaseCosts={input.costDisplayMode === "withBaseCosts"}
-									/>
+									<Results results={calculation.results} />
 								)}
 							</CardContent>
 						</Card>
@@ -609,10 +559,8 @@ function FormSelect<TValue extends string>({
 
 function Results({
 	results,
-	showBaseCosts,
 }: {
 	results: ReturnType<typeof calculateTariffs>["results"];
-	showBaseCosts: boolean;
 }) {
 	return (
 		<div className="mt-5">
@@ -630,22 +578,14 @@ function Results({
 					</TableHeader>
 					<TableBody>
 						{results.map((result) => (
-							<ResultRow
-								key={result.tariff.id}
-								result={result}
-								showBaseCosts={showBaseCosts}
-							/>
+							<ResultRow key={result.tariff.id} result={result} />
 						))}
 					</TableBody>
 				</Table>
 			</div>
 			<div className="grid gap-3 md:hidden">
 				{results.map((result) => (
-					<ResultCard
-						key={result.tariff.id}
-						result={result}
-						showBaseCosts={showBaseCosts}
-					/>
+					<ResultCard key={result.tariff.id} result={result} />
 				))}
 			</div>
 			<div className="mt-5 grid gap-3">
@@ -659,10 +599,8 @@ function Results({
 
 function ResultRow({
 	result,
-	showBaseCosts,
 }: {
 	result: ReturnType<typeof calculateTariffs>["results"][number];
-	showBaseCosts: boolean;
 }) {
 	return (
 		<TableRow
@@ -688,11 +626,6 @@ function ResultRow({
 			</TableCell>
 			<TableCell className="align-top font-semibold">
 				{currency.format(result.variableTotal)}
-				{showBaseCosts && (
-					<span className="block font-normal text-muted-foreground text-xs">
-						Grundkosten separat
-					</span>
-				)}
 			</TableCell>
 			<TableCell className="align-top text-muted-foreground whitespace-normal">
 				{result.notes[0]}
@@ -703,10 +636,8 @@ function ResultRow({
 
 function ResultCard({
 	result,
-	showBaseCosts,
 }: {
 	result: ReturnType<typeof calculateTariffs>["results"][number];
-	showBaseCosts: boolean;
 }) {
 	return (
 		<Card
@@ -742,11 +673,6 @@ function ResultCard({
 						</dd>
 					</div>
 				</dl>
-				{showBaseCosts && (
-					<p className="mt-2 text-muted-foreground text-xs">
-						Grundkosten werden separat angezeigt.
-					</p>
-				)}
 			</CardContent>
 		</Card>
 	);

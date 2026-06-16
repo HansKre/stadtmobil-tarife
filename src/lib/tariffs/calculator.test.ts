@@ -10,7 +10,6 @@ const baseInput: TripInput = {
 	distanceKm: 20,
 	usageContext: "stuttgart",
 	customerType: "individual",
-	costDisplayMode: "variableOnly",
 };
 
 describe("calculateTariffs", () => {
@@ -66,10 +65,7 @@ describe("calculateTariffs", () => {
 	});
 
 	it("does not add monthly base costs to the trip total", () => {
-		const result = calculateTariffs({
-			...baseInput,
-			costDisplayMode: "withBaseCosts",
-		});
+		const result = calculateTariffs(baseInput);
 
 		expect(
 			result.results.every((entry) => entry.totalWithBaseCosts === null),

@@ -365,6 +365,11 @@ a {
   padding: 0.75rem 1rem 0.65rem;
 }
 
+.stadtmobil-hero-link,
+.stadtmobil-hero-link:hover {
+  color: #fff;
+}
+
 .section-card {
   border: 1px solid var(--stadtmobil-line);
   border-radius: 0.5rem;

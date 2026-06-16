@@ -20,7 +20,6 @@ export const EXAMPLE_SCENARIOS: ExampleScenario[] = [
 			distanceKm: 18,
 			usageContext: "stuttgart",
 			customerType: "individual",
-			costDisplayMode: "variableOnly",
 		}),
 	},
 	{
@@ -34,7 +33,6 @@ export const EXAMPLE_SCENARIOS: ExampleScenario[] = [
 			distanceKm: 180,
 			usageContext: "stuttgart",
 			customerType: "individual",
-			costDisplayMode: "variableOnly",
 		}),
 	},
 	{
@@ -48,7 +46,6 @@ export const EXAMPLE_SCENARIOS: ExampleScenario[] = [
 			distanceKm: 420,
 			usageContext: "stuttgart",
 			customerType: "household",
-			costDisplayMode: "withBaseCosts",
 		}),
 	},
 	{
@@ -62,7 +59,6 @@ export const EXAMPLE_SCENARIOS: ExampleScenario[] = [
 			distanceKm: 70,
 			usageContext: "stuttgart",
 			customerType: "individual",
-			costDisplayMode: "variableOnly",
 		}),
 	},
 ];

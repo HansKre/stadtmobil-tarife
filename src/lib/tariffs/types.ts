@@ -6,8 +6,6 @@ export type UsageContext = "stuttgart" | "crossUse";
 
 export type CustomerType = "individual" | "household";
 
-export type CostDisplayMode = "variableOnly" | "withBaseCosts";
-
 export type TimePriceKind = "hourly" | "daily" | "weekly" | "combined";
 
 export type ValidationSeverity = "error" | "warning" | "info";
@@ -68,7 +66,6 @@ export interface TripInput {
 	distanceKm: number;
 	usageContext: UsageContext;
 	customerType: CustomerType;
-	costDisplayMode: CostDisplayMode;
 }
 
 export interface NormalizedTripInput extends TripInput {

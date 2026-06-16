@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">stadtmobil Tarifrechner icon</title>
+  <desc id="desc">Orange app icon with a white car and calculator dots.</desc>
+  <rect width="512" height="512" rx="112" fill="#ff8a36" />
+  <path fill="#f76700" d="M0 348h512v52c0 62-50 112-112 112H112C50 512 0 462 0 400v-52Z" />
+  <path
+    fill="#fff"
+    d="M140 248h232c17 0 32 10 39 25l28 63c5 11-3 24-15 24h-24a52 52 0 0 1-104 0h-80a52 52 0 0 1-104 0H88c-12 0-20-13-15-24l28-63c7-15 22-25 39-25Zm2 34-20 46h278l-20-46H142Zm22 102a24 24 0 1 0 0-48 24 24 0 0 0 0 48Zm184 0a24 24 0 1 0 0-48 24 24 0 0 0 0 48Z"
+  />
+  <path fill="#0081c6" d="M156 112h200c18 0 32 14 32 32v72H124v-72c0-18 14-32 32-32Z" />
+  <path fill="#fff" d="M160 152h112v32H160zM304 152h32v32h-32zM160 204h32v32h-32zM216 204h32v32h-32zM272 204h32v32h-32zM328 204h32v32h-32z" />
+</svg>
