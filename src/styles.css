@@ -122,6 +122,7 @@
 }
 
 @theme inline {
+  --breakpoint-table: 890px;
   --font-sans: 'Noto Sans', Helvetica, Arial, sans-serif;
   --font-condensed: 'Noto Sans Condensed', 'Arial Narrow', sans-serif;
   --color-background: var(--background);

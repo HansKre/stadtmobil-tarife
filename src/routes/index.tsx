@@ -270,7 +270,7 @@ function Home() {
 			</header>
 
 			<div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
-				<section className="grid min-w-0 gap-6 lg:grid-cols-[minmax(0,420px)_1fr]">
+				<section className="grid min-w-0 gap-6 min-[1270px]:grid-cols-[minmax(0,420px)_1fr]">
 					<Card asChild className="section-card min-w-0 gap-0 py-0">
 						<form onSubmit={(event) => event.preventDefault()}>
 							<CardHeader className="border-b px-5 pt-5 pb-4">
@@ -594,7 +594,7 @@ function Results({
 }) {
 	return (
 		<div className="mt-5">
-			<div className="hidden md:block">
+			<div className="hidden table:block">
 				<Table className="[&_td:first-child]:pl-3 [&_th:first-child]:pl-3">
 					<TableHeader>
 						<TableRow>
@@ -613,7 +613,7 @@ function Results({
 					</TableBody>
 				</Table>
 			</div>
-			<div className="grid gap-3 md:hidden">
+			<div className="grid gap-3 table:hidden">
 				{results.map((result) => (
 					<ResultCard key={result.tariff.id} result={result} />
 				))}
