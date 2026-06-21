@@ -19,7 +19,7 @@ describe("calculateTariffs", () => {
 		expect(result.results).toHaveLength(3);
 		expect(result.results.map((entry) => entry.rank)).toEqual([1, 2, 3]);
 		expect(result.results[0]?.highlight).toBe("best");
-		expect(result.results[1]?.highlight).toBe("second");
+		expect(result.results[1]?.highlight).toBe("none");
 	});
 
 	it("rounds non-half-hour times up before calculating", () => {
@@ -159,5 +159,41 @@ describe("calculateTariffs", () => {
 		expect(shorty?.notes).toContain(
 			"Maximale Nutzungsdauer 24 Stunden. Fahrzeuge müssen in der shorty-Zone zurückgestellt werden.",
 		);
+	});
+
+	it("shows warning for shorty class when duration is up to 24 hours", () => {
+		const result = calculateTariffs({
+			...baseInput,
+			vehicleClass: "S",
+			start: new Date(2026, 5, 15, 9, 0),
+			end: new Date(2026, 5, 16, 9, 0), // exactly 24 hours
+		});
+
+		expect(
+			result.messages.find(
+				(message) =>
+					message.message === "Maximale Nutzungsdauer 24 Stunden." &&
+					message.severity === "warning",
+			),
+		).toBeDefined();
+		expect(result.results.length).toBeGreaterThan(0);
+	});
+
+	it("shows error and invalidates calculation for shorty class when duration is over 24 hours", () => {
+		const result = calculateTariffs({
+			...baseInput,
+			vehicleClass: "S",
+			start: new Date(2026, 5, 15, 9, 0),
+			end: new Date(2026, 5, 16, 9, 30), // 24.5 hours
+		});
+
+		expect(
+			result.messages.find(
+				(message) =>
+					message.message === "Maximale Nutzungsdauer 24 Stunden." &&
+					message.severity === "error",
+			),
+		).toBeDefined();
+		expect(result.results).toHaveLength(0);
 	});
 });

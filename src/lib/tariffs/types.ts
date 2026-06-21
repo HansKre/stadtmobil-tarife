@@ -119,7 +119,7 @@ export interface TariffCalculationResult {
 	variableTotal: number;
 	totalWithBaseCosts: number | null;
 	rank: number;
-	highlight: "best" | "second" | "none";
+	highlight: "best" | "none";
 	notes: string[];
 }
 

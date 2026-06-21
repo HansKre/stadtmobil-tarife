@@ -36,13 +36,13 @@ export function calculateTariffs(input: TripInput): CalculationResult {
 		(tariff) => tariff.id !== "shorty" || normalized.vehicleClass === "S",
 	)
 		.map((tariff) => calculateTariff(tariff, normalized))
-		.toSorted((left, right) => left.variableTotal - right.variableTotal)
+		.sort((left, right) => left.variableTotal - right.variableTotal)
 		.map(
 			(result, index) =>
 				({
 					...result,
 					rank: index + 1,
-					highlight: index === 0 ? "best" : index === 1 ? "second" : "none",
+					highlight: index === 0 ? "best" : "none",
 				}) satisfies TariffCalculationResult,
 		);
 
@@ -74,6 +74,20 @@ function validateInput(
 			severity: "error",
 			message: "Die Mindestbuchungszeit beträgt 1 Stunde.",
 		});
+	}
+
+	if (normalized.vehicleClass === "S") {
+		if (normalized.durationHours > 24) {
+			messages.push({
+				severity: "error",
+				message: "Maximale Nutzungsdauer 24 Stunden.",
+			});
+		} else {
+			messages.push({
+				severity: "warning",
+				message: "Maximale Nutzungsdauer 24 Stunden.",
+			});
+		}
 	}
 
 	if (
@@ -175,9 +189,13 @@ function calculateTimeCost(
 	const duration = durationHours(start, end);
 	const roundedDuration = Math.ceil(duration / HALF_HOUR) * HALF_HOUR;
 	const hourlyCost = calculateHourlySegments(start, roundedDuration, rates);
-	const candidates = [
+	const candidates: Array<{
+		kind: TimePriceKind;
+		label: string;
+		cost: number;
+	}> = [
 		{
-			kind: "hourly" as const,
+			kind: "hourly",
 			label: "Stundenpreis nach Uhrzeit",
 			cost: hourlyCost.total,
 		},
@@ -200,7 +218,7 @@ function calculateTimeCost(
 		});
 	}
 
-	const selected = candidates.toSorted(
+	const selected = [...candidates].sort(
 		(left, right) => left.cost - right.cost,
 	)[0];
 	const bookingFee = rates.bookingFee ?? 0;

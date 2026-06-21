@@ -202,6 +202,9 @@ function Home() {
 	>();
 	const calculation = useMemo(() => calculateTariffs(input), [input]);
 	const currentDuration = Math.max(0, durationHours(input.start, input.end));
+	const shortyMessage = calculation.messages.find(
+		(m) => m.message === "Maximale Nutzungsdauer 24 Stunden.",
+	);
 
 	useEffect(() => {
 		window.sessionStorage.setItem(
@@ -307,6 +310,23 @@ function Home() {
 										</SelectContent>
 									</Select>
 								</div>
+
+								{shortyMessage && (
+									<Alert
+										className={
+											shortyMessage.severity === "error"
+												? "border-red-200 bg-red-50 text-red-800"
+												: "border-amber-200 bg-amber-50 text-amber-900"
+										}
+										variant={
+											shortyMessage.severity === "error"
+												? "destructive"
+												: "default"
+										}
+									>
+										<AlertDescription>{shortyMessage.message}</AlertDescription>
+									</Alert>
+								)}
 
 								<div className="field-group grid min-w-0 gap-3 rounded-lg border p-3">
 									<p className="font-medium text-sm">Buchungsbeginn</p>
@@ -490,21 +510,31 @@ function Home() {
 
 							<CardContent>
 								<div className="grid gap-2">
-									{calculation.messages.map((message) => (
-										<Alert
-											className={
-												message.severity === "error"
-													? "border-red-200 bg-red-50 text-red-800"
-													: "border-blue-200 bg-blue-50 text-blue-900"
-											}
-											key={message.message}
-											variant={
-												message.severity === "error" ? "destructive" : "default"
-											}
-										>
-											<AlertDescription>{message.message}</AlertDescription>
-										</Alert>
-									))}
+									{calculation.messages
+										.filter(
+											(message) =>
+												message.message !==
+												"Maximale Nutzungsdauer 24 Stunden.",
+										)
+										.map((message) => (
+											<Alert
+												className={
+													message.severity === "error"
+														? "border-red-200 bg-red-50 text-red-800"
+														: message.severity === "warning"
+															? "border-amber-200 bg-amber-50 text-amber-900"
+															: "border-blue-200 bg-blue-50 text-blue-900"
+												}
+												key={message.message}
+												variant={
+													message.severity === "error"
+														? "destructive"
+														: "default"
+												}
+											>
+												<AlertDescription>{message.message}</AlertDescription>
+											</Alert>
+										))}
 								</div>
 
 								{calculation.results.length > 0 && (
@@ -607,9 +637,7 @@ function ResultRow({
 			className={
 				result.highlight === "best"
 					? "bg-[#ffe4d2] hover:bg-[#ffe4d2]"
-					: result.highlight === "second"
-						? "bg-[#eff0f1] hover:bg-[#eff0f1]"
-						: undefined
+					: undefined
 			}
 		>
 			<TableCell className="align-top">
@@ -690,11 +718,6 @@ function TariffName({
 				{result.highlight === "best" && (
 					<Badge className="border-transparent bg-[#ff8a36] text-white hover:bg-[#ff8a36]">
 						günstigster Tarif
-					</Badge>
-				)}
-				{result.highlight === "second" && (
-					<Badge className="ps-0" variant="secondary">
-						zweitgünstigster
 					</Badge>
 				)}
 			</div>

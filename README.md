@@ -9,7 +9,7 @@ React-SPA zur Berechnung und zum tabellarischen Vergleich der Nutzungskosten fü
 ## Funktionen
 
 - Berechnet Classic, Basic und Easy gleichzeitig.
-- Markiert günstigsten und zweitgünstigsten Tarif.
+- Markiert den günstigsten Tarif.
 - Vergleicht Zeitkosten, Kilometerkosten, variable Gesamtkosten und separat ausgewiesene Monatsgrundkosten.
 - Unterstützt die Fahrzeugtarifklassen A, B, C, D und F laut „Unsere Fahrzeugklassen“.
 - Rundet nicht-halbstündige Buchungszeiten automatisch auf die nächste halbe Stunde auf.
