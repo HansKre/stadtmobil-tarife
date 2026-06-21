@@ -396,6 +396,16 @@ a {
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+  overflow: hidden;
+}
+
+.picker-input::-webkit-date-and-time-value {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  text-align: left;
 }
 
 .picker-input::-webkit-calendar-picker-indicator {

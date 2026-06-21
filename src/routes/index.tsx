@@ -284,7 +284,7 @@ function Home() {
 							</CardHeader>
 
 							<CardContent className="mt-5 grid min-w-0 gap-4 px-5 pb-5">
-								<div className="grid min-w-0 gap-1.5">
+								<div className="flex flex-col gap-1.5 min-w-0">
 									<Label htmlFor="vehicle-class">Fahrzeugtarifklasse</Label>
 									<Select
 										value={input.vehicleClass}
@@ -331,7 +331,7 @@ function Home() {
 								<div className="field-group grid min-w-0 gap-3 rounded-lg border p-3">
 									<p className="font-medium text-sm">Buchungsbeginn</p>
 									<div className="grid grid-cols-2 smallscreen-portrait:grid-cols-1 gap-3">
-										<div className="grid min-w-0 gap-1.5">
+										<div className="flex flex-col gap-1.5 min-w-0">
 											<Label htmlFor="start-date">Datum</Label>
 											<Input
 												className="picker-input"
@@ -347,7 +347,7 @@ function Home() {
 												}
 											/>
 										</div>
-										<div className="grid min-w-0 gap-1.5">
+										<div className="flex flex-col gap-1.5 min-w-0">
 											<Label htmlFor="start-time">Uhrzeit</Label>
 											<Input
 												className="picker-input"
@@ -370,7 +370,7 @@ function Home() {
 								<div className="field-group grid min-w-0 gap-3 rounded-lg border p-3">
 									<p className="font-medium text-sm">Buchungsende</p>
 									<div className="grid grid-cols-2 smallscreen-portrait:grid-cols-1 gap-3">
-										<div className="grid min-w-0 gap-1.5">
+										<div className="flex flex-col gap-1.5 min-w-0">
 											<Label htmlFor="end-date">Datum</Label>
 											<Input
 												className="picker-input"
@@ -386,7 +386,7 @@ function Home() {
 												}
 											/>
 										</div>
-										<div className="grid min-w-0 gap-1.5">
+										<div className="flex flex-col gap-1.5 min-w-0">
 											<Label htmlFor="end-time">Uhrzeit</Label>
 											<Input
 												className="picker-input"
@@ -429,7 +429,7 @@ function Home() {
 									</p>
 								</div>
 
-								<div className="grid gap-1.5">
+								<div className="flex flex-col gap-1.5 min-w-0">
 									<Label htmlFor="distance-km">Entfernung in km</Label>
 									<Input
 										id="distance-km"
@@ -471,7 +471,7 @@ function Home() {
 									}
 								/>
 
-								<div className="grid gap-1.5">
+								<div className="flex flex-col gap-1.5 min-w-0">
 									<Label htmlFor="example-scenario">Beispiel laden</Label>
 									<Select value={selectedExampleId} onValueChange={loadExample}>
 										<SelectTrigger id="example-scenario">
