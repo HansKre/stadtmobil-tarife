@@ -310,7 +310,7 @@ function Home() {
 
 								<div className="field-group grid min-w-0 gap-3 rounded-lg border p-3">
 									<p className="font-medium text-sm">Buchungsbeginn</p>
-									<div className="grid grid-cols-2 gap-3">
+									<div className="grid grid-cols-2 smallscreen-portrait:grid-cols-1 gap-3">
 										<div className="grid min-w-0 gap-1.5">
 											<Label htmlFor="start-date">Datum</Label>
 											<Input
@@ -349,7 +349,7 @@ function Home() {
 
 								<div className="field-group grid min-w-0 gap-3 rounded-lg border p-3">
 									<p className="font-medium text-sm">Buchungsende</p>
-									<div className="grid grid-cols-2 gap-3">
+									<div className="grid grid-cols-2 smallscreen-portrait:grid-cols-1 gap-3">
 										<div className="grid min-w-0 gap-1.5">
 											<Label htmlFor="end-date">Datum</Label>
 											<Input
