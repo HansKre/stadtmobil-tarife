@@ -391,6 +391,10 @@ a {
 .picker-input {
   position: relative;
   padding-right: 2.5rem;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .picker-input::-webkit-calendar-picker-indicator {
